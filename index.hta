@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app="App">
+<meta http-equiv="X-UA-Compatible" Content="IE=edge">
+<head>
+  <title></title>
+  <link rel="stylesheet" href="./stylesheets/reset.css">
+  <link rel="stylesheet" href="./stylesheets/style.css">
+  <script src="./javascripts/angular.min.js"></script>
+  <script src="./app/CommonUtil.js"></script>
+  <script src="./app/DBUtils.js"></script>
+  <script>
+    window.exp={};
+    var app = angular.module('App', []);
+    app.controller('searchApp', function() {
+      // model
+      this.system = {};
+      this.person = {};
+      // controller
+      this.getSystem = function() {
+        try {
+          exp.params={sysNo: trim(this.sysNo), sysName: trim(this.sysName), table: trim(this.table)};
+          require('./app/system.js');
+          this.system = exp.system;
+          this.person = [];
+        }catch(e){
+          alert(e.message);
+        }
+      };
+      this.getPerson = function() {
+        try {
+          exp.params={person_name: trim(this.person_name), org_name: trim(this.org_name)};
+          require('./app/person.js');
+          this.person = exp.person;
+          this.system = {};
+        }catch(e){
+          alert(e.message);
+        }
+      };
+    });
+  </script>
+</head>
+<body>
+  <div ng-controller="searchApp as app">
+    <h2>保有システム検索</h2>
+    <div>システム番号で表示：
+      <input name="sysNo" class="sysNo" ng-model="app.sysNo">
+    </div>
+    <div>システム名で表示　：
+      <input name="sysName" class="sysName" ng-model="app.sysName">
+    </div>
+    <div>表示する情報を選択：
+      <select name="tableName" class="type" ng-model="app.table">
+        <option value="TD_T_BASIC_INFO">基本情報</option>
+        <option value="TD_T_APP_WEB">ＷＥＢ</option>
+        <option value="TD_T_APP_BATCH">バッチ</option>
+      </select>
+    </div>
+    <input type="button" value="表示" class="showSystem" ng-click="app.getSystem()">
+  <hr>
+    <h2>職員コード検索</h2>
+    <div>名称　：
+      <input name="person_name" class="sql" ng-model="app.person_name">
+    </div>
+    <div>部署名：
+      <input name="org_name" class="sql" ng-model="app.org_name">
+    </div>
+    <input type="button" value="表示" class="showPersonal" ng-click="app.getPerson()">
+  <hr>
+    <h2>結果表示</h2>
+    <table class="result">
+      <tr ng-repeat="name in app.system.header">
+        <th>{{name}}</th>
+        <td ng-repeat="item in app.system.data">{{item[name]}}</td>
+      </tr>
+    </table>
+    <table class="result">
+      <tr>
+        <th ng-repeat="name in app.person.header">{{name}}</th>
+      </tr>
+      <tr ng-repeat="item in app.person.data">
+        <td ng-repeat="(key, value) in item">{{value}}</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
