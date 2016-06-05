@@ -41,32 +41,32 @@
 </head>
 <body>
   <div ng-controller="searchApp as app">
-    <h2>•Û—LƒVƒXƒeƒ€ŒŸõ</h2>
-    <div>ƒVƒXƒeƒ€”Ô†‚Å•\Ž¦F
+    <h2>ã‚·ã‚¹ãƒ†ãƒ æ¤œç´¢</h2>
+    <div>ã‚·ã‚¹ãƒ†ãƒ ç•ªå·ã§è¡¨ç¤ºï¼š
       <input name="sysNo" class="sysNo" ng-model="app.sysNo">
     </div>
-    <div>ƒVƒXƒeƒ€–¼‚Å•\Ž¦@F
+    <div>ã‚·ã‚¹ãƒ†ãƒ åã§è¡¨ç¤ºã€€ï¼š
       <input name="sysName" class="sysName" ng-model="app.sysName">
     </div>
-    <div>•\Ž¦‚·‚éî•ñ‚ð‘I‘ðF
+    <div>è¡¨ç¤ºã™ã‚‹æƒ…å ±ã‚’é¸æŠžï¼š
       <select name="tableName" class="type" ng-model="app.table">
-        <option value="TD_T_BASIC_INFO">Šî–{î•ñ</option>
-        <option value="TD_T_APP_WEB">‚v‚d‚a</option>
-        <option value="TD_T_APP_BATCH">ƒoƒbƒ`</option>
+        <option value="BASIC_INFO">åŸºæœ¬æƒ…å ±</option>
+        <option value="APP_WEB">ï¼·ï¼¥ï¼¢</option>
+        <option value="APP_BATCH">ãƒãƒƒãƒ</option>
       </select>
     </div>
-    <input type="button" value="•\Ž¦" class="showSystem" ng-click="app.getSystem()">
+    <input type="button" value="è¡¨ç¤º" class="showSystem" ng-click="app.getSystem()">
   <hr>
-    <h2>EˆõƒR[ƒhŒŸõ</h2>
-    <div>–¼Ì@F
+    <h2>è·å“¡æ¤œç´¢</h2>
+    <div>åç§°ã€€ï¼š
       <input name="person_name" class="sql" ng-model="app.person_name">
     </div>
-    <div>•”–¼F
+    <div>éƒ¨ç½²åï¼š
       <input name="org_name" class="sql" ng-model="app.org_name">
     </div>
-    <input type="button" value="•\Ž¦" class="showPersonal" ng-click="app.getPerson()">
+    <input type="button" value="è¡¨ç¤º" class="showPersonal" ng-click="app.getPerson()">
   <hr>
-    <h2>Œ‹‰Ê•\Ž¦</h2>
+    <h2>çµæžœè¡¨ç¤º</h2>
     <table class="result">
       <tr ng-repeat="name in app.system.header">
         <th>{{name}}</th>
